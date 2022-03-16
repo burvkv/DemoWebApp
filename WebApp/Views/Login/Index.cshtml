@@ -1,0 +1,35 @@
+﻿@{
+    Layout = null;
+   
+}
+@model WebApp.Models.UserForLoginDto
+  <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+<body class="area">
+<div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <form class="login" asp-action="LogIn" asp-controller="Login" method="post">
+                    <div class="login__field">                       
+                        <input type="text" asp-for="Email" name="Email" class="login__input" placeholder="Email">
+                    </div>
+                    <div class="login__field">
+                        <input type="password" asp-for="Password" name="Password" class="login__input" placeholder="Password">
+                    </div>
+                    <button class="button login__submit">
+                        <span class="button__text">Log In</span>
+                    </button>				
+                </form>
+                
+            </div>
+            <div class="screen__background">
+                <span class="screen__background__shape screen__background__shape1"></span>
+             
+                <span class="screen__background__shape screen__background__shape2"></span>
+            </div>		
+        </div>
+    </div>
+    <div class="social">
+        <a href="https://github.com/burvkv"><i class='bx bxl-github'></i></a>
+    </div>
+    </body>

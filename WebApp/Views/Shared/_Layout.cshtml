@@ -1,0 +1,79 @@
+﻿@using System.Text.Json
+@using WebApp.Models.Data
+<!DOCTYPE html>
+
+<html lang="en">
+@model WebApp.Models.UserMenuItemViewModel
+@{
+
+    UserMenuItemViewModel viewModel = JsonSerializer.Deserialize<UserMenuItemViewModel>(TempData["LayoutObj"].ToString());
+    TempData.Keep();
+
+}
+<head>
+    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApp</title>
+    <link rel="stylesheet" href="~/css/main.css" asp-append-version="true" />  
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+    
+</head>
+<body>  
+    <nav>
+      <div class="navbar">
+        <div class="container nav-container">
+            <input class="checkbox" type="checkbox" name="" id="" />
+            <div class="hamburger-lines">
+              <span class="line line1"></span>
+              <span class="line line2"></span>
+              <span class="line line3"></span>
+            </div>  
+          <div class="logo">
+            <h1><i class='bx bxs-bolt-circle'></i></h1>
+          </div>
+          
+            
+                @{
+                    string Name = viewModel.User.FirstName + " " + viewModel.User.LastName[0] + ".";
+                   
+                }
+          <div class="user-content">
+            <div class="user-name"><a href="#"><img runat="server" src="~/res/@viewModel.User.PicturePath" alt="" width="40" height="40"></a></div>
+            <div class="user-menu">
+              <li>@Name</li>
+             
+              <hr>
+              
+              <li><a asp-action="Logout" asp-controller="Login" ><i class='bx bx-log-out'></i></a></li>
+              
+            </div>
+          </div>
+          <div class="right-btns">
+
+          
+         
+          <div class="help"><a href="#"><i class='bx bxs-help-circle' ></i></a></div>
+        </div>
+          <div class="menu-items">
+              @foreach(var item in viewModel.MenuItems as List<WebApp.Models.MenuItem>){
+            <li><a asp-action="@item.Name" asp-controller="Home"><i class='@item.IconPath'></i> @item.Name</a></li>
+            
+              }
+          </div>
+        </div>
+      </div>
+    </nav>
+
+  <div class="support-center">
+    <div class="support-logo"><a href="#"><i class='bx bx-support'></a></i></div>
+    <div class="support-menu">
+      <li><a href="#"><i class='bx bxs-chat'></i></a></li>
+      <li><a href="#"><i class='bx bxl-microsoft-teams'></i></a></li>
+      <li><a href="#"><i class='bx bx-desktop'></i></a></li>
+    </div>
+  </div>
+   
+    @RenderBody()
+</body>
+</html>
